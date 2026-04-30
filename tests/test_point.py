@@ -88,7 +88,7 @@ class PointTest(unittest.TestCase):
             .field("string", "string value")
 
         expected = "h2o,location=europe boolean=false,byte=9i,decimal=25.6,decimal-object=0.142857,double=250.69," \
-                   "float=35,integer=7i,long=1i,point=13.3,sbyte=12i,short=8i,string=\"string value\"," \
+                   "float=35.0,integer=7i,long=1i,point=13.3,sbyte=12i,short=8i,string=\"string value\"," \
                    "uint=11i,ulong=10i,ushort=13i"
 
         self.assertEqual(expected, point.to_line_protocol())
@@ -492,7 +492,7 @@ class PointTest(unittest.TestCase):
             "time": 1
         }
         point = Point.from_dict(dict_structure, field_types={"some_counter": "uint"})
-        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234u,water_level=1 1",
+        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234u,water_level=1.0 1",
                          point.to_line_protocol())
 
     def test_from_dictionary_int(self):
@@ -506,7 +506,7 @@ class PointTest(unittest.TestCase):
             "time": 1
         }
         point = Point.from_dict(dict_structure, field_types={"some_counter": "int"})
-        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234i,water_level=1 1",
+        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234i,water_level=1.0 1",
                          point.to_line_protocol())
 
     def test_from_dictionary_float(self):
@@ -520,7 +520,7 @@ class PointTest(unittest.TestCase):
             "time": 1
         }
         point = Point.from_dict(dict_structure, field_types={"some_counter": "float"})
-        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234,water_level=1 1",
+        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234,water_level=1.0 1",
                          point.to_line_protocol())
 
     def test_from_dictionary_float_from_dict(self):
@@ -535,7 +535,7 @@ class PointTest(unittest.TestCase):
             "time": 1
         }
         point = Point.from_dict(dict_structure)
-        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234,water_level=1 1",
+        self.assertEqual("h2o_feet,location=coyote_creek some_counter=108913123234,water_level=1.0 1",
                          point.to_line_protocol())
 
     def test_static_measurement_name(self):
