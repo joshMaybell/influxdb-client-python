@@ -359,20 +359,20 @@ class BatchingWriteTest(unittest.TestCase):
         self.assertEqual(10, len(_requests))
 
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=1 1\n"
-                         "h2o_feet,location=coyote_creek level\\ water_level=2 2", _requests[0].parsed_body)
+                         "h2o_feet,location=coyote_creek level\\ water_level=2.0 2", _requests[0].parsed_body)
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=3 3\n"
                          "h2o_feet,location=coyote_creek level\\ water_level=4 4", _requests[1].parsed_body)
-        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=5 5\n"
-                         "h2o_feet,location=coyote_creek level\\ water_level=6 6", _requests[2].parsed_body)
+        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=5.0 5\n"
+                         "h2o_feet,location=coyote_creek level\\ water_level=6.0 6", _requests[2].parsed_body)
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=7 7\n"
-                         "h2o_feet,location=coyote_creek level\\ water_level=8 8", _requests[3].parsed_body)
+                         "h2o_feet,location=coyote_creek level\\ water_level=8.0 8", _requests[3].parsed_body)
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=9 9\n"
                          "h2o_feet,location=coyote_creek level\\ water_level=10 10", _requests[4].parsed_body)
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=11 11\n"
                          "h2o_feet,location=coyote_creek level\\ water_level=12 12", _requests[5].parsed_body)
-        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=13 13\n"
-                         "h2o_feet,location=coyote_creek level\\ water_level=14 14", _requests[6].parsed_body)
-        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=15 15\n"
+        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=13.0 13\n"
+                         "h2o_feet,location=coyote_creek level\\ water_level=14.0 14", _requests[6].parsed_body)
+        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=15.0 15\n"
                          "h2o_feet,location=coyote_creek level\\ water_level=16 16", _requests[7].parsed_body)
         self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=17 17\n"
                          "h2o_feet,location=coyote_creek level\\ water_level=18 18", _requests[8].parsed_body)
@@ -397,9 +397,9 @@ class BatchingWriteTest(unittest.TestCase):
 
         self.assertEqual(2, len(_requests))
 
-        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=5 5", _requests[0].parsed_body)
+        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=5.0 5", _requests[0].parsed_body)
         self.assertEqual("s", _requests[0].querystring["precision"][0])
-        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=6 6", _requests[1].parsed_body)
+        self.assertEqual("h2o_feet,location=coyote_creek level\\ water_level=6.0 6", _requests[1].parsed_body)
         self.assertEqual("ns", _requests[1].querystring["precision"][0])
 
     def test_write_result(self):
