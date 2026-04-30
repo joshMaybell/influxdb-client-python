@@ -524,7 +524,7 @@ class WriteApiTestMock(BaseTest):
 
         requests = httpretty.httpretty.latest_requests
         self.assertEqual(1, len(requests))
-        self.assertEqual("h2o,customer=California\\ Miner,id=132-987-655 level=1 1", requests[0].parsed_body)
+        self.assertEqual("h2o,customer=California\\ Miner,id=132-987-655 level=1.0 1", requests[0].parsed_body)
 
     def test_redirect(self):
         from urllib3 import Retry
