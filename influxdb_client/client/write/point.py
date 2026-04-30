@@ -289,7 +289,15 @@ def _append_fields(fields, field_types):
         if isinstance(value, float) or isinstance(value, Decimal) or _np_is_subtype(value, 'float'):
             if not math.isfinite(value):
                 continue
-            _return.append(f'{_escape_key(field)}={str(value)}')
+            s = str(value)
+            # It's common to represent whole numbers as floats
+            # and the trailing ".0"
+            # To ensure type safety, keep unless an explicit field type is requested.
+            if s.endswith('.0'):
+                _type = field_types.get(field)
+                if _type is not None:
+                    s = f"{s[:-2]}{_type}"
+            _return.append(f'{_escape_key(field)}={s}')
         elif (isinstance(value, int) or _np_is_subtype(value, 'int')) and not isinstance(value, bool):
             _type = field_types.get(field, "i")
             _return.append(f'{_escape_key(field)}={str(value)}{_type}')
